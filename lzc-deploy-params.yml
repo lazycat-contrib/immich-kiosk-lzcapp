@@ -1,0 +1,29 @@
+params:
+  - id: immich_url
+    type: string
+    name: "Immich 服务器地址"
+    description: "你的 Immich 实例地址，如 http://192.168.1.10:2283。启动必填，缺失时容器无法启动（官方行为）。"
+    default_value: ""
+    optional: false
+  - id: immich_api_key
+    type: secret
+    name: "Immich API Key"
+    description: "在 Immich 网页端「账号设置 → API Keys」里创建。启动必填。"
+    default_value: "please-fill-your-immich-api-key"
+    optional: false
+
+locales:
+  zh:
+    immich_url:
+      name: "Immich 服务器地址"
+      description: "你的 Immich 实例地址，如 http://192.168.1.10:2283（启动必填）"
+    immich_api_key:
+      name: "Immich API Key"
+      description: "在 Immich 网页端「账号设置 → API Keys」创建（启动必填）"
+  en:
+    immich_url:
+      name: "Immich server URL"
+      description: "Your Immich instance URL, e.g. http://192.168.1.10:2283 (required)"
+    immich_api_key:
+      name: "Immich API Key"
+      description: "Create one in Immich web UI: Account Settings > API Keys (required)"

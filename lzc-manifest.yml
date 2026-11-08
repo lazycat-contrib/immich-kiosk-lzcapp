@@ -1,0 +1,42 @@
+application:
+  subdomain: immich-kiosk
+  multi_instance: false
+  # No public_path: Kiosk has no account system (the PIN lock is optional),
+  # so platform entry authentication stays the first line of defense.
+  upstreams:
+    - location: /package-licenses/
+      backend: file:///lzcapp/pkg/content/licenses/
+    - location: /
+      backend: http://immich-kiosk:3000/
+
+services:
+  immich-kiosk:
+    # upstream: damongolding/immich-kiosk:0.17.2
+    image: docker.1ms.run/damongolding/immich-kiosk:0.17.2
+    environment:
+      - LANG=en_GB
+      - TZ=Asia/Shanghai
+      - KIOSK_IMMICH_URL={{ .U.immich_url }}
+      - KIOSK_IMMICH_API_KEY={{PASSWORD_immich_api_key}}
+      - KIOSK_DURATION=60
+    binds:
+      # optional UI-saved config lands here
+      - /lzcapp/var/mutdata:/config
+usage: |
+  Immich Kiosk 是 Immich 照片相框：把你的 Immich 照片库变成全屏轮播
+  相册/屏保，适合挂在平板或旧屏幕上。
+
+  使用方法：
+  1. 安装时填写你自己的 Immich 实例地址（如 http://192.168.x.x:2283）
+     与 Immich API Key（在 Immich 网页端「账号设置 → API Keys」里创建）。
+     这两项为启动必填，缺失时容器无法启动（官方行为）。
+  2. 打开应用即可看到轮播；可在界面设置里选择相册、人物、时间段等来源，
+     也可设置可选的 PIN 锁。
+  3. 配置数据保存在 /lzcapp/var/mutdata，卸载会一并删除。
+
+  说明：
+  - 本应用没有账号体系（PIN 锁是可选的），因此未使用 public_path，
+    由平台入口鉴权保护。
+  - 需要用户自备 Immich 实例与 API Key，本包不含 Immich 服务本身。
+  - 本包未做实机验证，功能以官方文档为准：https://docs.immichkiosk.app
+  - 许可证 AGPL-3.0，随包分发，见 /package-licenses/。

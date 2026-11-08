@@ -1,0 +1,18 @@
+package: community.lazycat.app.immich-kiosk
+name: Immich Kiosk
+version: 0.17.2
+description: "Immich photo kiosk: a slideshow screensaver that displays photos from your self-hosted Immich instance."
+min_os_version: "1.5.0"
+homepage: https://github.com/damongolding/immich-kiosk
+author: damongolding
+license: AGPL-3.0
+permissions:
+  required:
+    - net.internet
+locales:
+  zh:
+    name: Immich Kiosk
+    description: "Immich 照片电子相框：从你自建的 Immich 实例拉取照片，做全屏轮播相册屏保。"
+  en:
+    name: Immich Kiosk
+    description: "Immich photo kiosk: slideshow screensaver displaying photos from your self-hosted Immich instance."
